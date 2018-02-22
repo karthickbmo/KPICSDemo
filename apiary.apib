@@ -1,45 +1,103 @@
 FORMAT: 1A
+HOST: http://polls.apiblueprint.org/
 
-# ICS Flights API
+# TestLeadsAPI
 
-Flights is a simple API allowing consumers to view aviation data e.g. airlines and flight data. 
-This API is used in the several chapters of the book **Implementing Oracle Integration Cloud Service**. 
+Polls is a simple API allowing consumers to view polls and vote in them.
 
-# Airlines [/airlines]
+## Questions Collection [/questions]
 
-Airlines resource for retrieving airline information. 
-Retrieve a list of all airlines or information of a specific airline.
+### List All Questions [GET]
 
-## Retrieve All Airlines [GET]
 + Response 200 (application/json)
-    + Attributes (array[AllAirlines])
-    
 
-# Data Structures
+        [
+            {
+                "question": "ListofLeads",
+                "LeadsList": [
+                    {
+                        "LeadId": "487563",
+                        "LeadStatus": "Qualified",
+                        "Outcome": "",
+                        "ATTUID": "UU9306",
+                        "FirstName": "Matt",
+                        "LastName": "Hooper",
+                        "Email": "matt.hooper@oracle.com",
+                        "Product": "MIS"
+                    }, {
+                        "LeadId": "487564",
+                        "LeadStatus": "Qualified",
+                        "Outcome": "",
+                        "ATTUID": "UU9306",
+                        "FirstName": "Matt",
+                        "LastName": "Hooper",
+                        "Email": "matt.hooper@oracle.com",
+                        "Product": "MIS"
+                    }, {
+                        "LeadId": "487565",
+                        "LeadStatus": "Qualified",
+                        "Outcome": "",
+                        "ATTUID": "UU9306",
+                        "FirstName": "Matt",
+                        "LastName": "Hooper",
+                        "Email": "matt.hooper@oracle.com",
+                        "Product": "AVPN"
+                    }, {
+                        "LeadId": "487566",
+                        "LeadStatus": "Qualified",
+                        "Outcome": "",
+                        "ATTUID": "UU9306",
+                        "FirstName": "Matt",
+                        "LastName": "Hooper",
+                        "Email": "matt.hooper@oracle.com",
+                        "Product": "BVOIP"
+                    }
+                ]
+            }
+        ]
 
-## AllAirlines (object)
-+ airline (array[AirlineBAW, AirlineDLH, AirlineKLM, AirlineUAL])
+### Create a New Question [POST]
 
-## AirlineBAW (object)
-+ icao: BAW (string, required)
-+ name: British Airways (string, required)
-+ callsign: SPEEDBIRD (string)
-+ country: United Kingdom (string)
+You may create your own question using this action. It takes a JSON
+object containing a question and a collection of answers in the
+form of choices.
 
-## AirlineDLH (object)
-+ icao: DLH (string, required)
-+ name: Lufthansa (string, required)
-+ callsign: LUFTHANSA (string)
-+ country: Germany (string)
++ Request (application/json)
 
-## AirlineKLM (object)
-+ icao: KLM (string, required)
-+ name: KLM (string, required)
-+ callsign: KLM (string)
-+ country: The Netherlands (string)
+        {
+            "question": "Favourite programming language?",
+            "choices": [
+                "Swift",
+                "Python",
+                "Objective-C",
+                "Ruby"
+            ]
+        }
 
-## AirlineUAL (object)
-+ icao: UAL (string, required)
-+ name: United Airlines (string, required)
-+ callsign: UNITED (string)
-+ country: United States (string)
++ Response 201 (application/json)
+
+    + Headers
+
+            Location: /questions/2
+
+    + Body
+
+            {
+                "question": "Favourite programming language?",
+                "published_at": "2015-08-05T08:40:51.620Z",
+                "choices": [
+                    {
+                        "choice": "Swift",
+                        "votes": 0
+                    }, {
+                        "choice": "Python",
+                        "votes": 0
+                    }, {
+                        "choice": "Objective-C",
+                        "votes": 0
+                    }, {
+                        "choice": "Ruby",
+                        "votes": 0
+                    }
+                ]
+            }
