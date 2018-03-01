@@ -11,21 +11,30 @@ Polls is a simple API allowing consumers to view polls and vote in them.
 
 + Response 200 (application/json)
 
-        [    
             {
                 "question": "ListofLeads",
                 "LeadsList": [
-                    "LeadId": "487563",
-                    "LeadStatus": "Qualified",
-                    "Outcome": "Manual",
-                    "ATTUID": "UU9306",
-                    "FirstName": "Matt",
-                    "LastName": "Hooper",
-                    "Email": "matt.hooper@oracle.com",
-                    "Product": "MIS"
+                    {
+                        "LeadId": "487563",
+                        "LeadStatus": "Qualified",
+                        "Outcome": "Manual",
+                        "ATTUID": "UU9306",
+                        "FirstName": "Matt",
+                        "LastName": "Hooper",
+                        "Email": "matt.hooper@oracle.com",
+                        "Product": "MIS"
+                    }, {
+                        "LeadId": "487566",
+                        "LeadStatus": "Qualified",
+                        "Outcome": "Manual",
+                        "ATTUID": "UU9306",
+                        "FirstName": "Matt",
+                        "LastName": "Hooper",
+                        "Email": "matt.hooper@oracle.com",
+                        "Product": "BVOIP"
+                    }
                 ]
             }
-        ]
 
 ### Create a New Question [POST]
 
